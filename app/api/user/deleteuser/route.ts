@@ -1,4 +1,4 @@
-import { deleteUserfromDB } from "@/utils/mysql"
+import { deleteUserfromDB } from "@/utils/mysqlUserUtils"
 import { InvalidFormResponse } from '@/lib/formresponses'
 
 export async function POST(req: Request) {

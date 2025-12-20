@@ -1,5 +1,5 @@
 import { InvalidFormResponse } from "@/lib/formresponses"
-import { addUsertoDB } from "@/utils/mysql"
+import { addUsertoDB } from "@/utils/mysqlUserUtils"
 
 export async function POST(req: Request) {
     const formdata = await req.formData()

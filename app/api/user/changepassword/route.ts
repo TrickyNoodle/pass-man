@@ -1,4 +1,4 @@
-import { updateUserPassword } from "@/utils/mysql"
+import { updateUserPassword } from "@/utils/mysqlUserUtils"
 import { InvalidFormResponse } from '@/lib/formresponses'
 
 export async function POST(req: Request) {
