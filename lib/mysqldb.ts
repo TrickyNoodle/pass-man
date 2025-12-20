@@ -1,11 +1,11 @@
 import mysql from 'mysql2/promise'
 
 export const db = mysql.createPool({
-    user: 'sagar',
-    password: '3971',
-    database: 'passman',
-    port: 3306,
-    host: 'localhost'
+    user: process.env.SQL_user,
+    password: process.env.SQL_password,
+    database: process.env.SQL_database,
+    port: parseInt(process.env.SQL_port),
+    host: process.env.SQL_host
 })
 export const query = {
     'addUser': 'insert into users(email,password) values(?,?)',
