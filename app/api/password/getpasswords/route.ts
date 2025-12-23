@@ -1,10 +1,17 @@
-import { InvalidFormResponse } from "@/lib/formresponses";
+import { decrypt } from "@/lib/jwt";
 import { getPasswordfromDB } from "@/utils/mysqlPasswordUtils";
+import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-    if (!(await req.nextUrl.searchParams.has('created_by')))
-        return Response.json(InvalidFormResponse)
-    const msg = await getPasswordfromDB(parseInt(req.nextUrl.searchParams.get('created_by')))
-    return Response.json({ 'msg': await msg })
+    const cookie=await cookies()
+    const authentication=await cookie.get('authentication')
+    const decryptedid=await decrypt(authentication?.value)
+    try{
+        const passwords=await getPasswordfromDB(parseInt(decryptedid.id))
+        return Response.json({msg:passwords})
+    }
+    catch(err){
+        return Response.json({'msg':'error'})
+    }
 }

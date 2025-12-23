@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 import { db, query } from "@/lib/mysqldb";
 export async function addUsertoDB(email: string, password: string): Promise<string> {
     try {
-        const hashedPassword: string = await bcrypt.hash(password, parseInt(process.env.HASHING_SALT))
+        const hashedPassword: string = await bcrypt.hash(password, parseInt(String(process.env.HASHING_SALT)))
 
         await (await db).execute(query.addUser, [email, await hashedPassword])
 
@@ -45,6 +45,25 @@ export async function updateUserPassword(email: string, currentpassword: string,
         return 'OK'
     } catch (err) {
         console.error('[UPDATE PASSWORD ERROR]', err)
+        return 'ERROR'
+    }
+}
+
+export async function getUserDetailsfromDB(email: string, password?: string, check: boolean = true): Promise<string | object> {
+    try {
+        const userdetails = await (await db).execute(query.getUserDetails, [email])
+        if (userdetails[0].length < 1)
+            return 'USER_NOT_FOUND'
+        if (check)
+            return userdetails[0][0]
+        const hashedpassword: string = await bcrypt.hash(password, parseInt(String(process.env.HASHING_SALT)))
+        const match: boolean = await bcrypt.compare(hashedpassword, userdetails[0][0]['password'])
+        if (match)
+            return userdetails[0][0]
+        return 'INCORRECT_PASSWORD'
+
+    }
+    catch (err) {
         return 'ERROR'
     }
 }
