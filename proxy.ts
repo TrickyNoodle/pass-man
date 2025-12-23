@@ -3,10 +3,13 @@ import { authorisation } from "./middleware/authorisation";
 import Auth from "./middleware/authentication";
 
 const middleware = [Auth, authorisation]
+const avoidmw: Array<string> = ['/api/auth/login', '/api/user/new']
 
 export default async function proxy(req: NextRequest) {
-    if (req.nextUrl.pathname === '/api/auth/login')
+    if (avoidmw.includes(req.nextUrl.pathname)) {
+        console.log('yes')
         return NextResponse.next()
+    }
     for (const fn of middleware) {
         const response = await fn(req)
         if (response)

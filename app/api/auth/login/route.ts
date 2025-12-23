@@ -3,6 +3,7 @@ import { getUserDetailsfromDB } from "@/utils/mysqlUserUtils";
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { encrypt } from "@/lib/jwt";
+import bcrypt from 'bcrypt'
 
 export async function POST(req: NextRequest) {
     const formdata = await req.formData()
@@ -13,14 +14,18 @@ export async function POST(req: NextRequest) {
     if (typeof data == 'string')
         return Response.json({ msg: 'UNAUTHORISED', 'summary': data.toString() })
     else {
-        encrypt(data.id, '7d').then((id) => {
-            cookie.set('authentication', id, {
-                httpOnly: true,
+        const ismatch = await bcrypt.compare(formdata.get('password'), data.password)
+        if (ismatch) {
+            encrypt(data.id, '7d').then((id) => {
+                cookie.set('authentication', id, {
+                    httpOnly: true,
+                })
             })
-        })
-        encrypt(data.email, '1h').then((email) => {
-            cookie.set('authorisation', email)
-        })
-        return Response.json({'msg':'OK'})
+            encrypt(data.email, '1h').then((email) => {
+                cookie.set('authorisation', email)
+            })
+            return Response.json({ 'msg': 'OK' })
+        }
+        return Response.json({'msg':'INCORRECT_PASSWORD'})
     }
 }

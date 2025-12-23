@@ -6,6 +6,6 @@ export async function POST(req: Request) {
     if (!(formdata.get('email') && formdata.get('password'))) {
         return Response.json(InvalidFormResponse)
     }
-    const msg = await addUsertoDB(await formdata.get('email'), await formdata.get('password'))
+    const msg = await addUsertoDB(String(formdata.get('email')), String(formdata.get('password')))
     return Response.json({ 'msg': await msg })
 }

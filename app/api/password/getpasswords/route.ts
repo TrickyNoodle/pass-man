@@ -6,7 +6,7 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
     const cookie=await cookies()
     const authentication=await cookie.get('authentication')
-    const decryptedid=await decrypt(authentication?.value)
+    const decryptedid=await decrypt(String(authentication?.value))
     try{
         const passwords=await getPasswordfromDB(parseInt(decryptedid.id))
         return Response.json({msg:passwords})
