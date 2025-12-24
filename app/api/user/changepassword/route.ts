@@ -5,7 +5,6 @@ import { decrypt } from "@/lib/jwt"
 
 export async function POST(req: Request) {
     try {
-
         const formdata = await req.formData()
         const cookieStore = await cookies()
         if (!(formdata.get('newpassword'))) {
@@ -19,6 +18,6 @@ export async function POST(req: Request) {
         return Response.json({ 'msg': await msg })
     }
     catch (err) {
-        throw err;
+        return Response.json({'msg':'Error'})
     }
 }

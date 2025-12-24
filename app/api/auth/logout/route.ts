@@ -4,5 +4,5 @@ export async function GET(req:Request){
     const cookieStore=await cookies()
     cookieStore.delete('authentication')
     cookieStore.delete('authorisation')
-    return Response.json('ok')
+    return Response.redirect(new URL('/login',req.url))
 }

@@ -16,20 +16,23 @@ const page = () => {
     })
     msg.json().then((data)=>{
       toast.dismiss(loading)
-      if(data.error){
-        toast.error(data.error)
-      }
-      else{
+      if(data.msg=='OK'){
         toast.success('Login Succesfull')
         toast.loading('Redirecting')
         setTimeout(() => {
           router.push('/dashboard')
         }, 3000);
       }
+      else{
+        toast.error(data.summary?data.summary:data.msg)
+      }
     })
   }
+  async function signup(){
+    router.push('/signup')
+  }
   return (
-    <div className='flex flex-col justify-center h-screen items-center gap-4 outline-2'>
+    <div className='flex flex-col justify-center h-screen items-center gap-4'>
       <Toaster position='top-center' theme='dark' />
       <h1 className='text-2xl'>Login</h1>
       <form onSubmit={Login} method='POST' className='flex flex-col gap-2 w-md border-2 p-4 rounded-xl hover:shadow-2xl shadow-green-700 ease-in-out duration-300'>
@@ -39,6 +42,7 @@ const page = () => {
           Login
         </Button>
       </form>
+      <Button variant={'link'} onClick={signup}>Don't Have An Account?SignUp?</Button>
     </div>
   )
 }
