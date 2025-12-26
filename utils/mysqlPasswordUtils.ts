@@ -1,4 +1,5 @@
 import { db, query } from "@/lib/mysqldb";
+import { error } from "console";
 
 export async function addPasswordtoDB(sitename: string, username: string, password: string, created_by: number): Promise<string> {
     try {
@@ -12,18 +13,21 @@ export async function addPasswordtoDB(sitename: string, username: string, passwo
 
 export async function updatePasswordinDB(username: string, password: string, id: number): Promise<string> {
     try {
-        await (await db).execute(query.updatePassword, [username, password, id])
+        const result=await (await db).execute(query.updatePassword, [username, password, id])
+        if(result[0]['affectedRows']===0)
+            throw error
         return 'OK'
     }
     catch (err) {
-        return 'an Error Occured'
-        throw err
+        return 'An Error Occured'
     }
 }
 
 export async function deletePasswordfromDB(id: number): Promise<string> {
     try {
-        await (await db).execute(query.deletePassword, [id])
+        const result=await (await db).execute(query.deletePassword, [id])
+        if(result[0]['affectedRows']===0)
+            throw error
         return 'OK'
     }
     catch (err) {

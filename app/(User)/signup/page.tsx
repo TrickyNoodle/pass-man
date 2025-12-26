@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
+import MouseReactiveBackground from "@/components/MouseReactiveBackground";
 export default function Home() {
     const router = useRouter()
     async function SignUp(e: React.FormEvent<HTMLFormElement>) {
@@ -17,8 +18,9 @@ export default function Home() {
             toast.dismiss(loading)
             if (data.msg == 'OK') {
                 toast.success('User Created')
-                toast.loading('Redirecting')
+                const loading = toast.loading('Redirecting')
                 setTimeout(() => {
+                    toast.dismiss(loading)
                     router.push('/login')
                 }, 3000);
             }
@@ -32,7 +34,6 @@ export default function Home() {
     }
     return (
         <div className='flex flex-col justify-center h-screen items-center gap-4'>
-            <Toaster position='top-center' theme='dark' />
             <h1 className='text-2xl'>SignUp</h1>
             <form onSubmit={SignUp} method='POST' className='flex flex-col gap-2 w-md border-2 p-4 rounded-xl hover:shadow-2xl shadow-green-700 ease-in-out duration-300'>
                 <Input type='email' name='email' placeholder='E-Mail' />

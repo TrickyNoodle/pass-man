@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+import MouseReactiveBackground from "@/components/MouseReactiveBackground";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,9 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <MouseReactiveBackground/>
       <body
-        className={`antialiased w-3/4 mx-auto dark`}
+        className={`antialiased lg:w-3/4 lg:mx-auto mx-2 dark`}
       >
+        <Toaster position="top-center" />
         {children}
       </body>
     </html>

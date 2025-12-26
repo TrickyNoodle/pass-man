@@ -67,9 +67,9 @@ const Navbar = (props: { username: string }) => {
         }
     }
     return (
-        <div className='flex justify-between items-center backdrop-blur-2xl sticky top-0'>
+        <div className='flex justify-between items-center sticky top-0'>
             {changepassword ?
-                <div onClick={() => setchangepassword(false)} className='flex justify-center items-center bg-background/80 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
+                <div onClick={() => setchangepassword(false)} className='backdrop-blur-md flex justify-center items-center bg-background/80 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
                     <form onClick={(e) => e.stopPropagation()} method="POST" onSubmit={updatePassword} className="flex flex-col bg-accent p-4 rounded-md gap-2 items-center">
                         <h1 className='text-xl'>Update Password</h1>
                         <Input placeholder="Current Password" type='password' name='password' />
@@ -82,7 +82,7 @@ const Navbar = (props: { username: string }) => {
             }
             {
                 duser ?
-                    <div onClick={() => setduser(false)} className='flex justify-center items-center bg-background/80 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
+                    <div onClick={() => setduser(false)} className='flex justify-center items-center backdrop-blur-md h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
                         <form onClick={(e) => e.stopPropagation()} method="GET" onSubmit={deleteAccount} className="flex flex-col bg-accent p-4 rounded-md gap-2 items-center">
                             <h1 className='text-xl'>Delete User</h1>
                             <div className='text-red-600 text-center font-bold'>
@@ -102,7 +102,7 @@ const Navbar = (props: { username: string }) => {
                         {props.username}
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent className='flex flex-col border rounded-md bg-background'>
+                <PopoverContent className='flex flex-col border rounded-md backdrop-blur-md'>
                     <Button onClick={Logout} variant={'outline'} className='w-full rounded-b-none'>Logout</Button>
                     <Button onClick={() => setchangepassword(true)} variant={'outline'} className='w-full rounded-none'>Update Password</Button>
                     <Button onClick={() => setduser(true)} variant={'destructive'} className='w-full rounded-t-none'>Delete User</Button>
