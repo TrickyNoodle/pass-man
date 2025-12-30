@@ -35,7 +35,7 @@ export default function Home() {
     return (
         <div className='flex flex-col justify-center h-screen items-center gap-4'>
             <h1 className='text-2xl'>SignUp</h1>
-            <form onSubmit={SignUp} method='POST' className='flex flex-col gap-2 w-md border-2 p-4 rounded-xl hover:shadow-2xl shadow-green-700 ease-in-out duration-300'>
+            <form onSubmit={SignUp} method='POST' className='flex flex-col gap-2 w-full md:w-md lg:w-lg border-2 p-4 rounded-xl hover:shadow-2xl shadow-green-700 ease-in-out duration-300 bg-background'>
                 <Input type='email' name='email' placeholder='E-Mail' />
                 <Input type='password' name='password' placeholder='Password' />
                 <Button type='submit' className='w-full'>

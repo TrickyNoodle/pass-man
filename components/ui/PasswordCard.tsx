@@ -8,8 +8,6 @@ import { toast } from 'sonner'
 const PasswordCard = ({ id, sitename, username, password, getdata }) => {
     const form: HTMLFormElement = useRef()
     const sitenamelocal: HTMLFormElement = useRef()
-    const [usernamenew, setUsername] = useState(username)
-    const [passwordnew, setPassword] = useState(password)
     const [edit, setedit] = useState(false)
     function Edit() {
         setedit(true)
@@ -54,12 +52,12 @@ const PasswordCard = ({ id, sitename, username, password, getdata }) => {
         getdata()
     }
     return (
-        <div key={id} className='my-2 -z-10 break-inside-avoid w-fit h-fit flex border-2 p-4 rounded-md bg-accent gap-2 items-center'>
+        <div key={id} className='my-2 break-inside-avoid w-fit h-fit flex border-2 p-4 rounded-md bg-accent gap-2 items-center'>
             <div className='flex flex-col gap-2 grow'>
                 <h1 ref={sitenamelocal} className='text-lg'>{sitename}</h1>
                 <form ref={form} onSubmit={updatepassword} className='flex gap-2'>
-                    <Input className='bg-background' type='text' onChangeCapture={(e)=>setUsername(e.currentTarget.value)} value={usernamenew} name='username' />
-                    <Input className='bg-background' type='text' onChangeCapture={(e)=>setPassword(e.currentTarget.value)} value={passwordnew} name='password' />
+                    <Input className='bg-background' readOnly={edit ? false : true} type='text' defaultValue={username} name='username' />
+                    <Input className='bg-background' readOnly={edit ? false : true} type='text' defaultValue={password} name='password' />
                 </form>
             </div>
             <div className='flex flex-col gap-2'>

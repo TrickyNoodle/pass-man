@@ -23,7 +23,7 @@ const page = () => {
         const loading = toast.loading('Redirecting')
         setTimeout(() => {
           toast.dismiss(loading)
-          router.push('/dashboard')
+          router.push('/')
         }, 3000);
       }
       else {
@@ -37,7 +37,7 @@ const page = () => {
   return (
     <div className='flex flex-col justify-center h-screen items-center gap-4'>
       <h1 className='text-2xl'>Login</h1>
-      <form onSubmit={Login} method='POST' className='flex flex-col gap-2 w-md border-2 p-4 rounded-xl hover:shadow-2xl shadow-green-700 ease-in-out duration-300'>
+      <form onSubmit={Login} method='POST' className='flex w-full flex-col gap-2 md:w-md lg:w-lg border-2 p-4 rounded-xl hover:shadow-2xl shadow-green-700 ease-in-out duration-300 bg-background'>
         <Input type='email' name='email' placeholder='E-Mail' />
         <Input type='password' name='password' placeholder='Password' />
         <Button type='submit' className='w-full'>

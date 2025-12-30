@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 import { redirect, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Input } from './input'
+import Link from 'next/link'
 
 const Navbar = (props: { username: string }) => {
     const router = useRouter()
@@ -19,7 +20,7 @@ const Navbar = (props: { username: string }) => {
                 toast.dismiss(loggingout)
                 toast.success('Logged Out')
                 toast.info('Redirecting')
-                redirect(data.url)
+                redirect('/login')
             })
         }
         catch (err) {
@@ -67,10 +68,10 @@ const Navbar = (props: { username: string }) => {
         }
     }
     return (
-        <div className='flex justify-between items-center sticky top-0'>
+        <div className='flex justify-between items-center sticky top-0 backdrop-blur-2xl'>
             {changepassword ?
-                <div onClick={() => setchangepassword(false)} className='backdrop-blur-md flex justify-center items-center bg-background/80 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
-                    <form onClick={(e) => e.stopPropagation()} method="POST" onSubmit={updatePassword} className="flex flex-col bg-accent p-4 rounded-md gap-2 items-center">
+                <div onClick={() => setchangepassword(false)} className='flex justify-center items-center bg-accent/85 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
+                    <form onClick={(e) => e.stopPropagation()} method="POST" onSubmit={updatePassword} className="flex flex-col bg-background p-4 rounded-md gap-2 items-center">
                         <h1 className='text-xl'>Update Password</h1>
                         <Input placeholder="Current Password" type='password' name='password' />
                         <Input placeholder="New Password" type="password" name='newpassword' />
@@ -82,8 +83,8 @@ const Navbar = (props: { username: string }) => {
             }
             {
                 duser ?
-                    <div onClick={() => setduser(false)} className='flex justify-center items-center backdrop-blur-md h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
-                        <form onClick={(e) => e.stopPropagation()} method="GET" onSubmit={deleteAccount} className="flex flex-col bg-accent p-4 rounded-md gap-2 items-center">
+                    <div onClick={() => setduser(false)} className='flex justify-center items-center bg-accent/85 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
+                        <form onClick={(e) => e.stopPropagation()} method="GET" onSubmit={deleteAccount} className="flex flex-col bg-background p-4 rounded-md gap-2 items-center">
                             <h1 className='text-xl'>Delete User</h1>
                             <div className='text-red-600 text-center font-bold'>
                                 <p>These Will delete your account from our database</p>
@@ -98,11 +99,13 @@ const Navbar = (props: { username: string }) => {
             <h1 className='text-2xl p-2'>Pass-Man</h1>
             <Popover>
                 <PopoverTrigger>
-                    <Button variant={'link'}>
-                        {props.username}
+                    <Button asChild variant={'link'}>
+                        <span>
+                            {props.username}
+                        </span>
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent className='flex flex-col border rounded-md backdrop-blur-md'>
+                <PopoverContent className='flex flex-col border rounded-md backdrop-blur-md bg-accent/80'>
                     <Button onClick={Logout} variant={'outline'} className='w-full rounded-b-none'>Logout</Button>
                     <Button onClick={() => setchangepassword(true)} variant={'outline'} className='w-full rounded-none'>Update Password</Button>
                     <Button onClick={() => setduser(true)} variant={'destructive'} className='w-full rounded-t-none'>Delete User</Button>

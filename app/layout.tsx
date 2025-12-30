@@ -15,10 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <MouseReactiveBackground/>
       <body
-        className={`antialiased lg:w-3/4 lg:mx-auto mx-2 dark`}
+        className={`antialiased md:w-3/4 lg:mx-auto md:mx-2 dark`}
       >
+        <MouseReactiveBackground />
         <Toaster position="top-center" />
         {children}
       </body>

@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     if (typeof data == 'string')
         return Response.json({ msg: 'UNAUTHORISED', 'summary': data.toString() })
     else {
-        const ismatch = await bcrypt.compare(formdata.get('password'), data.password)
+        const ismatch = await bcrypt.compare(String(formdata.get('password')), String(data.password))
         if (ismatch) {
             encrypt(data.id, '7d').then((id) => {
                 cookie.set('authentication', id, {

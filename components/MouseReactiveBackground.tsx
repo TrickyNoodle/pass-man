@@ -19,10 +19,10 @@ export default function MouseReactiveBackground() {
     }, [])
 
     return (
-        <div className="fixed inset-0 -z-10 overflow-hidden bg-[#050b08]">
+        <div className="fixed inset-0 -z-10 overflow-hidden bg-accent">
             {/* base gradient */}
             <div
-                className="absolute inset-0 bg-gradient-to-br from-[#0a1f16] via-[#07140f] to-[#020806]"
+                className="absolute inset-0 bg-accent"
                 style={{
                     transform: `translate(${(pos.x - 50) * 0.15}px, ${(pos.y - 50) * 0.15}px)`
                 }}

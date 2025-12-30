@@ -24,7 +24,7 @@ const PasswordTool = ({ getdata }) => {
     return (
         <div className='w-full flex flex-col gap-2'>
             <h1 className='text-xl'>Add Password</h1>
-            <form onSubmit={addpassword} className='flex flex-col gap-4 bg-sidebar-accent p-4 rounded-md'>
+            <form onSubmit={addpassword} className='flex flex-col gap-4 bg-accent border-2 p-4 rounded-md'>
                 <Input type='text' name='sitename' defaultValue='' placeholder='Website Name' />
                 <Input type='text' name='username' defaultValue='' placeholder='UserName' />
                 <Input type='password' name='password' defaultValue='' placeholder='Password' />
