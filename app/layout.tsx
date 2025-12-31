@@ -19,7 +19,7 @@ export default function RootLayout({
         className={`antialiased md:w-3/4 lg:mx-auto md:mx-2 dark`}
       >
         <MouseReactiveBackground />
-        <Toaster position="top-center" />
+        <Toaster position="top-center"  />
         {children}
       </body>
     </html>

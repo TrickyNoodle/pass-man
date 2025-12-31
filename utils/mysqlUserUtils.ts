@@ -8,7 +8,10 @@ export async function addUsertoDB(email: string, password: string): Promise<stri
 
         return 'OK'
     } catch (err) {
-        return 'User Already Exists'
+        // throw err
+        if (err.errno == 1062)
+            return 'User Already Exists'
+        return 'An Error Occured'
     }
 }
 
@@ -64,6 +67,7 @@ export async function getUserDetailsfromDB(email: string, password?: string, che
 
     }
     catch (err) {
+        // throw err
         return 'ERROR'
     }
 }
