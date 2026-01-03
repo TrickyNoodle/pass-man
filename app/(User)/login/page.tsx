@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import MouseReactiveBackground from '@/components/MouseReactiveBackground'
 
-const page = () => {
+const Page = () => {
   const router = useRouter()
   async function Login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -44,9 +44,9 @@ const page = () => {
           Login
         </Button>
       </form>
-      <Button variant={'link'} onClick={signup}>Don't Have An Account?SignUp?</Button>
+      <Button variant={'link'} onClick={signup}>Don&apos;t Have An Account?SignUp?</Button>
     </div>
   )
 }
 
-export default page
+export default Page

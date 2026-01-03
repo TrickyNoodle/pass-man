@@ -4,13 +4,13 @@ import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { encrypt } from "@/lib/jwt";
 import bcrypt from 'bcrypt'
-
+import { userdetailsresponse } from "@/types/response";
 export async function POST(req: NextRequest) {
     const formdata = await req.formData()
     const cookie = await cookies();
     if (!(formdata.get('email') && formdata.get('password')))
         return Response.json(InvalidFormResponse)
-    const data: (string | object) = await getUserDetailsfromDB(String(formdata.get('email')), String(formdata.get('password')))
+    const data: userdetailsresponse = await getUserDetailsfromDB(String(formdata.get('email')), String(formdata.get('password')))
     if (typeof data == 'string')
         return Response.json({ msg: 'UNAUTHORISED', 'summary': data.toString() })
     else {
@@ -26,6 +26,6 @@ export async function POST(req: NextRequest) {
             })
             return Response.json({ 'msg': 'OK' })
         }
-        return Response.json({'msg':'INCORRECT_PASSWORD'})
+        return Response.json({ 'msg': 'INCORRECT_PASSWORD' })
     }
 }

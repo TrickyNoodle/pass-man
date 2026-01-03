@@ -12,10 +12,10 @@ export async function POST(req: Request) {
         }
         const emailcookie = cookieStore.get('authorisation')
         const email = await decrypt(String(emailcookie?.value))
-        console.log(email.id)
-        const msg = await updateUserPassword(await email.id, String(formdata.get('password')), String(formdata.get('newpassword')))
-        console.log(await msg)
-        return Response.json({ 'msg': await msg })
+        if (typeof email === 'string')
+            return Response.json(InvalidFormResponse)
+        const msg = await updateUserPassword(email.id, String(formdata.get('password')), String(formdata.get('newpassword')))
+        return Response.json({ 'msg': msg })
     }
     catch (err) {
         return Response.json({'msg':'Error'})

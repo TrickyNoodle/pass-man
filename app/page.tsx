@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 import Navbar from '@/components/ui/Navbar'
 import PasswordCard from '@/components/ui/PasswordCard'
 import PasswordTool from '@/components/ui/PasswordTool'
 import Filter from '@/components/ui/Filter'
 import { useEffect, useState } from 'react'
+import { passworddetails } from '@/types/table'
 
-const page = () => {
-  const [data, setdata] = useState<any[]>([])
+const Page = () => {
+  const [data, setdata] = useState<passworddetails[]>([])
   const [name, setname] = useState('')
   const [filter, setfilter] = useState('')
 
@@ -87,4 +89,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

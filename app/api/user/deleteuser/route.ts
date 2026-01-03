@@ -5,6 +5,8 @@ import { decrypt } from "@/lib/jwt"
 export async function GET(req: Request) {
     const cookieStore = await cookies()
     const email = await decrypt(String(cookieStore.get('authorisation')?.value))
+    if (typeof email === 'string')
+        return Response.json({ msg: 'Invalid token' })
     const msg = await deleteUserfromDB(email.id)
-    return Response.json({ 'msg': await msg })
+    return Response.json({ 'msg': msg })
 }

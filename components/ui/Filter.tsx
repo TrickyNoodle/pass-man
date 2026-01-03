@@ -1,8 +1,13 @@
 import React from 'react'
 import { Input } from './input'
 
-const Filter = ({ setfilter, filter }) => {
-  function handlechange(e: React.InputEvent<HTMLInputElement>) {
+type FilterProps = {
+  setfilter: (s: string) => void
+  filter?: string
+}
+
+const Filter = ({ setfilter, filter }: FilterProps) => {
+  function handlechange(e: React.ChangeEvent<HTMLInputElement>) {
     setfilter(e.currentTarget.value)
   }
   return (

@@ -2,7 +2,11 @@
 import { Input } from './input'
 import { Button } from './button'
 import { toast } from 'sonner'
-const PasswordTool = ({ getdata }) => {
+type PasswordToolProps = {
+    getdata: () => void
+}
+
+const PasswordTool = ({ getdata }: PasswordToolProps) => {
     async function addpassword(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const form=e.currentTarget

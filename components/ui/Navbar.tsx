@@ -16,12 +16,11 @@ const Navbar = (props: { username: string }) => {
     async function Logout() {
         const loggingout = toast.loading('Logging Out')
         try {
-            fetch('/api/auth/logout').then((data) => {
-                toast.dismiss(loggingout)
-                toast.success('Logged Out')
-                toast.info('Redirecting')
-                redirect('/login')
-            })
+            const resp = await fetch('/api/auth/logout')
+            toast.dismiss(loggingout)
+            toast.success('Logged Out')
+            toast.info('Redirecting')
+            router.push('/login')
         }
         catch (err) {
             toast.error('Logout Failed')
@@ -31,11 +30,11 @@ const Navbar = (props: { username: string }) => {
         e.preventDefault()
         const formdata = new FormData(e.currentTarget)
         const loading = toast.loading('Updating Password')
-        let msg = await fetch('/api/user/changepassword', {
+        const resp = await fetch('/api/user/changepassword', {
             method: 'POST',
             body: formdata
         })
-        msg = await msg.json()
+        const msg = await resp.json()
         toast.dismiss(loading)
         if (msg.msg == 'OK') {
             toast.success('Password Updated')
@@ -59,9 +58,10 @@ const Navbar = (props: { username: string }) => {
         }
         else {
             const loading = toast.loading('Deleting User')
-            const msg = await fetch('/api/user/deleteuser')
+            const resp = await fetch('/api/user/deleteuser')
+            const data = await resp.json()
             toast.dismiss(loading)
-            toast.success(msg.json().then((data) => { return data.msg }))
+            toast.success(data.msg)
             setTimeout(() => {
                 router.push('/api/auth/logout')
             }, 2000);

@@ -5,22 +5,30 @@ import { Button } from './button'
 import { Delete, Edit3, Save } from 'lucide-react'
 import { toast } from 'sonner'
 
-const PasswordCard = ({ id, sitename, username, password, getdata }) => {
-    const form: HTMLFormElement = useRef()
-    const sitenamelocal: HTMLFormElement = useRef()
+type PasswordCardProps = {
+    id: string | number
+    sitename: string
+    username: string
+    password: string
+    getdata: () => void
+}
+
+const PasswordCard = ({ id, sitename, username, password, getdata }: PasswordCardProps) => {
+    const form = useRef<HTMLFormElement | null>(null)
+    const sitenamelocal = useRef<HTMLHeadingElement | null>(null)
     const [edit, setedit] = useState(false)
     function Edit() {
         setedit(true)
     }
     function Submit() {
         setedit(false)
-        form.current.requestSubmit()
+        form.current?.requestSubmit()
     }
-    async function updatepassword(e: React.FormEvent) {
+    async function updatepassword(e: React.FormEvent<HTMLFormElement>) {
         const loading = toast.loading('Updating Password')
         e.preventDefault()
         const formdata = new FormData(e.currentTarget)
-        formdata.append('id', id)
+        formdata.append('id', String(id))
         const msg = await fetch('/api/password/updatepassword', {
             method: 'POST',
             body: formdata
@@ -34,10 +42,10 @@ const PasswordCard = ({ id, sitename, username, password, getdata }) => {
         }
         getdata()
     }
-    async function deletepassword(e) {
+    async function deletepassword() {
         const loading = toast.loading('Deleting Password')
         const formdelete = new FormData();
-        formdelete.append('id', id)
+        formdelete.append('id', String(id))
         const msg = await fetch('/api/password/deletepassword', {
             method: 'POST',
             body: formdelete

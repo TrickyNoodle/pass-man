@@ -5,5 +5,7 @@ export async function GET(req: Request) {
     const cookieStore = await cookies()
     const emailcookie = cookieStore.get('authorisation')
     const email = await decrypt(String(emailcookie?.value))
+    if (typeof email === 'string')
+        return Response.json({ msg: 'Invalid token' })
     return Response.json({ 'msg': email.id })
 }

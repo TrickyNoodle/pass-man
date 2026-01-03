@@ -4,11 +4,11 @@ export const db = mysql.createPool({
     user: process.env.SQL_user,
     password: process.env.SQL_password,
     database: process.env.SQL_database,
-    port: parseInt(process.env.SQL_port),
-    host: process.env.SQL_host
-    // ssl: {
-    //     rejectUnauthorized: true
-    // }
+    port: parseInt(String(process.env.SQL_port)),
+    host: process.env.SQL_host,
+    ssl: {
+        rejectUnauthorized: true
+    }
 })
 export const query = {
     'addUser': 'insert into users(email,password) values(?,?)',

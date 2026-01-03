@@ -8,6 +8,8 @@ export async function GET(req: NextRequest) {
     const authentication=await cookie.get('authentication')
     const decryptedid=await decrypt(String(authentication?.value))
     try{
+        if (typeof decryptedid === 'string')
+            return Response.json({ msg: 'Invalid token' })
         const passwords=await getPasswordfromDB(parseInt(decryptedid.id))
         return Response.json({msg:passwords})
     }
