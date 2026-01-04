@@ -25,6 +25,7 @@ Just another password manager, nothing fancy.
 *   **Shadcn UI:** For pre-built UI components.
 *   **Tailwind CSS:** A utility-first CSS framework for styling the application.
 *   **Sonner:** For toast notifications.
+*   **Motion:** For Animating UI
 
 ## Installation
 
