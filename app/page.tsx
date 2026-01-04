@@ -5,6 +5,8 @@ import PasswordTool from '@/components/ui/PasswordTool'
 import Filter from '@/components/ui/Filter'
 import { useEffect, useState } from 'react'
 import { passworddetails } from '@/types/table'
+import { AnimatePresence } from 'motion/react'
+import { motion } from 'motion/react'
 
 const Page = () => {
   const [data, setdata] = useState<passworddetails[]>([])
@@ -40,9 +42,9 @@ const Page = () => {
         >
           <PasswordTool getdata={getdata} />
           {data.length === 0 ? (
-            <h1 className="text-xl text-center my-8">
+            <motion.h1 initial={{ translateY: 50 }} animate={{ translateY: 0 }} className="transition-none text-xl text-center my-8">
               Your Passwords List Seems to be Empty 😭 Why not Add one? 🙂
-            </h1>
+            </motion.h1>
           )
             :
             <Filter setfilter={setfilter} filter={filter} />
@@ -50,22 +52,11 @@ const Page = () => {
         </div>
         {data.length > 0 && (
           <div className="md:w-2/3 flex md:h-15/16 overflow-y-auto overflow-x-visible">
-            <div className="grid gap-2 md:grid-cols-2 mx-auto h-min">
-              {
-                data.map((password) => {
-                  if (filter.trim() == '') {
-                    return (
-                      <PasswordCard
-                        key={password.id}
-                        id={password.id}
-                        password={password.password}
-                        sitename={password.sitename}
-                        username={password.username}
-                        getdata={getdata}
-                      />
-                    )
-                  } else {
-                    if (password.sitename.includes(filter)) {
+            <div className="my-2 grid gap-2 md:grid-cols-2 mx-auto h-min">
+              <AnimatePresence>
+                {
+                  data.map((password) => {
+                    if (filter.trim() == '') {
                       return (
                         <PasswordCard
                           key={password.id}
@@ -76,11 +67,24 @@ const Page = () => {
                           getdata={getdata}
                         />
                       )
+                    } else {
+                      if (password.sitename.includes(filter)) {
+                        return (
+                          <PasswordCard
+                            key={password.id}
+                            id={password.id}
+                            password={password.password}
+                            sitename={password.sitename}
+                            username={password.username}
+                            getdata={getdata}
+                          />
+                        )
+                      }
                     }
                   }
+                  )
                 }
-                )
-              }
+              </AnimatePresence>
             </div>
           </div>
         )}

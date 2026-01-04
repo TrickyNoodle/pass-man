@@ -1,5 +1,6 @@
 import React from 'react'
 import { Input } from './input'
+import { motion } from 'motion/react'
 
 type FilterProps = {
   setfilter: (s: string) => void
@@ -11,12 +12,12 @@ const Filter = ({ setfilter, filter }: FilterProps) => {
     setfilter(e.currentTarget.value)
   }
   return (
-    <div className='rounded-md flex flex-col gap-2'>
+    <motion.div initial={{ translateY: 50 }} animate={{ translateY: 0 }} className='transition-none rounded-md flex flex-col gap-2'>
       <h3 className='text-xl'>Filter Passwords</h3>
       <div className='bg-accent rounded-md'>
         <Input type='text' name='filter' placeholder='Enter Sitename to Filter' onChange={handlechange} defaultValue={''} />
       </div>
-    </div>
+    </motion.div>
   )
 }
 

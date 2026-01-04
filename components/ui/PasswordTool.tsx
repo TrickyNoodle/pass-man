@@ -2,6 +2,7 @@
 import { Input } from './input'
 import { Button } from './button'
 import { toast } from 'sonner'
+import {motion} from 'motion/react'
 type PasswordToolProps = {
     getdata: () => void
 }
@@ -26,7 +27,7 @@ const PasswordTool = ({ getdata }: PasswordToolProps) => {
         getdata()
     }
     return (
-        <div className='w-full flex flex-col gap-2'>
+        <motion.div initial={{translateY:20}} animate={{translateY:0}} className='transition-none w-full flex flex-col gap-2'>
             <h1 className='text-xl'>Add Password</h1>
             <form onSubmit={addpassword} className='flex flex-col gap-4 bg-accent border-2 p-4 rounded-md'>
                 <Input type='text' name='sitename' defaultValue='' placeholder='Website Name' />
@@ -34,7 +35,7 @@ const PasswordTool = ({ getdata }: PasswordToolProps) => {
                 <Input type='password' name='password' defaultValue='' placeholder='Password' />
                 <Button type='submit' className='w-full'>Add</Button>
             </form>
-        </div>
+        </motion.div>
     )
 }
 

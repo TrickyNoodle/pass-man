@@ -4,6 +4,7 @@ import { Input } from './input'
 import { Button } from './button'
 import { Delete, Edit3, Save } from 'lucide-react'
 import { toast } from 'sonner'
+import { motion } from 'motion/react'
 
 type PasswordCardProps = {
     id: string | number
@@ -72,7 +73,7 @@ const PasswordCard = ({ id, sitename, username, password, getdata }: PasswordCar
         }
     }
     return (
-        <div key={id} className='break-inside-avoid w-fit h-fit flex border-2 p-4 rounded-md bg-accent gap-2 items-center'>
+        <motion.div key={id} exit={{ scale:0 }} initial={{ scale: [0.95] }} animate={{ scale:[1.15,1] }}  className='transition-none break-inside-avoid w-fit h-fit flex border-2 p-4 rounded-md bg-accent gap-2 items-center'>
             <div className='flex flex-col gap-2 grow'>
                 <h1 ref={sitenamelocal} className='text-lg'>{sitename}</h1>
                 <form ref={form} onSubmit={updatepassword} className='flex gap-2'>
@@ -84,7 +85,7 @@ const PasswordCard = ({ id, sitename, username, password, getdata }: PasswordCar
                 <Button onClick={edit ? Submit : Edit}>{edit ? <Save /> : <Edit3 />}</Button>
                 <Button onClick={deletepassword} variant={'destructive'}><Delete /></Button>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
