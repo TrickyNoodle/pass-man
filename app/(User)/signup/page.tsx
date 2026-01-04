@@ -1,9 +1,8 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import MouseReactiveBackground from "@/components/MouseReactiveBackground";
 export default function Home() {
     const router = useRouter()
     async function SignUp(e: React.FormEvent<HTMLFormElement>) {

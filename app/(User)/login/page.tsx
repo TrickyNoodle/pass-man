@@ -1,10 +1,8 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { toast, Toaster } from 'sonner'
+import { toast} from 'sonner'
 import { useRouter } from 'next/navigation'
-import AnimatedBackground from '@/components/AnimatedBackground'
-import MouseReactiveBackground from '@/components/MouseReactiveBackground'
 
 const Page = () => {
   const router = useRouter()

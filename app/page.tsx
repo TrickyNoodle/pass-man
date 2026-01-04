@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 import Navbar from '@/components/ui/Navbar'
 import PasswordCard from '@/components/ui/PasswordCard'
@@ -23,8 +22,9 @@ const Page = () => {
       const res = await fetch('/api/user/getname')
       const json = await res.json()
       setname(json.msg)
+      await getdata()
     }
-    getdata()
+
     getname()
   }, [])
 

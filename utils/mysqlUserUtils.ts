@@ -56,7 +56,6 @@ export async function updateUserPassword(email: string, currentpassword: string,
         await (await db).execute<ResultSetHeader>(query.updateUserPassword, [newHashedPassword, email])
         return 'OK'
     } catch (err) {
-        console.error('[UPDATE PASSWORD ERROR]', err)
         return 'ERROR'
     }
 }

@@ -3,10 +3,9 @@ import { Button } from './button'
 import { PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 import { Popover } from './popover'
 import { toast } from 'sonner'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Input } from './input'
-import Link from 'next/link'
 
 const Navbar = (props: { username: string }) => {
     const router = useRouter()
@@ -68,7 +67,7 @@ const Navbar = (props: { username: string }) => {
         }
     }
     return (
-        <div className={`flex justify-between items-center sticky top-0 ${(changepassword || duser)?'':'backdrop-blur-md'}`}>
+        <div className={`flex justify-between items-center sticky top-0 ${(changepassword || duser) ? '' : 'backdrop-blur-md'}`}>
             {changepassword ?
                 <div onClick={() => setchangepassword(false)} className='z-1 flex justify-center items-center h-screen w-full fixed left-0 right-0 top-0 bottom-0 backdrop-blur-lg'>
                     <form onClick={(e) => e.stopPropagation()} method="POST" onSubmit={updatePassword} className="flex flex-col bg-accent p-4 rounded-md gap-2 items-center">

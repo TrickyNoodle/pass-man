@@ -1,6 +1,6 @@
 import { cookie, cookiewithid } from "@/types/cookie";
 import "jsonwebtoken";
-import { JwtPayload, verify, sign, SignOptions } from "jsonwebtoken";
+import { verify, sign, SignOptions } from "jsonwebtoken";
 const secretkey = process.env.SESSION_secret
 export async function encrypt(id: string | number, expiresIn: string = '1h'): Promise<string> {
     if (secretkey == undefined)

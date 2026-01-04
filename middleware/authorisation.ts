@@ -1,8 +1,5 @@
 import { decrypt } from "@/lib/jwt";
-import { cookie } from "@/types/cookie";
-import { userdetailsresponse } from "@/types/response";
 import { getUserDetailsfromDB } from "@/utils/mysqlUserUtils";
-import { JwtPayload } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
