@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# pass-man
 
-## Getting Started
+Just another password manager, nothing fancy.
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+`pass-man` is a simple password manager built with Next.js and TypeScript. It provides basic functionality for storing and managing your passwords securely.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Description](#description)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+*   **Next.js:** A React framework for building web applications.
+*   **TypeScript:** A typed superset of JavaScript that enhances code quality and maintainability.
+*   **React:** A JavaScript library for building user interfaces.
+*   **MySQL:** A relational database management system for storing user data and passwords.
+*   **Bcrypt:** A password-hashing function for securely storing passwords.
+*   **JSON Web Tokens (JWT):** A standard for securely transmitting information between parties as a JSON object.
+*   **Shadcn UI:** For pre-built UI components.
+*   **Tailwind CSS:** A utility-first CSS framework for styling the application.
+*   **Sonner:** For toast notifications.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Clone the repository:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```bash
+    git clone https://github.com/TrickyNoodle/pass-man.git
+    cd pass-man
+    ```
 
-## Deploy on Vercel
+2.  **Install dependencies:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    npm install # or yarn install or pnpm install or bun install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3.  **Set up the environment variables:**
+
+    Create a `.env.local` file in the root directory and populate it with the necessary environment variables.  Refer to `.env.example` for the required variables:
+
+    ```
+    SESSION_SECRET=your_secret_key_128bit_or_256bit
+    SQL_user=username
+    SQL_password=password
+    SQL_database=passman
+    SQL_port=3306
+    SQL_host=localhost
+    HASHING_SALT=10
+    ```
+
+    **Note:** Ensure you use a strong, randomly generated `SESSION_SECRET` for security.
+
+4.  **Database Setup:**
+
+    Make sure you have a MySQL database set up and running. The application uses the credentials provided in the `.env.local` file to connect to the database.
+
+## Usage
+
+1.  **Run the development server:**
+
+    ```bash
+    npm run dev # or yarn dev or pnpm dev or bun dev
+    ```
+
+2.  **Open your browser and navigate to `http://localhost:3000`** (or the port your development server is running on).
+
+## Features
+
+*   **Secure Password Storage:** Passwords are encrypted using bcrypt before being stored in the database.
+*   **User Authentication:** Users can register and log in to access their password vault.
+*   **Password Management:** Users can add, edit, and delete their stored passwords.
+*   **JWT-Based Authentication:** Uses JSON Web Tokens for secure session management.
+*   **Modern UI:** Built with Shadcn UI for a clean and accessible user interface.
+*   **Responsive Design:** The application is designed to be responsive and work on different screen sizes.
+*   **Toast Notifications:** Provides user feedback through Sonner toast notifications.
+*   **Environment Variable Configuration:** Uses `.env.local` for easy configuration of database credentials and secrets.
