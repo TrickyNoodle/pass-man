@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import MouseReactiveBackground from "@/components/MouseReactiveBackground";
+import Navbar from "@/components/ui/Navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased md:w-3/4 lg:mx-auto md:mx-2 dark`}
+        className={`antialiased md:w-3/4 dark md:mx-auto px-2`}
       >
         <MouseReactiveBackground />
-        <Toaster position="top-center"  />
+        <Toaster position="top-center" />
         {children}
       </body>
     </html>

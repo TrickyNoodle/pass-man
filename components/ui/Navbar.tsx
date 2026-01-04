@@ -68,10 +68,10 @@ const Navbar = (props: { username: string }) => {
         }
     }
     return (
-        <div className='flex justify-between items-center sticky top-0 backdrop-blur-2xl'>
+        <div className={`flex justify-between items-center sticky top-0 ${(changepassword || duser)?'':'backdrop-blur-md'}`}>
             {changepassword ?
-                <div onClick={() => setchangepassword(false)} className='flex justify-center items-center bg-accent/85 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
-                    <form onClick={(e) => e.stopPropagation()} method="POST" onSubmit={updatePassword} className="flex flex-col bg-background p-4 rounded-md gap-2 items-center">
+                <div onClick={() => setchangepassword(false)} className='z-1 flex justify-center items-center h-screen w-full fixed left-0 right-0 top-0 bottom-0 backdrop-blur-lg'>
+                    <form onClick={(e) => e.stopPropagation()} method="POST" onSubmit={updatePassword} className="flex flex-col bg-accent p-4 rounded-md gap-2 items-center">
                         <h1 className='text-xl'>Update Password</h1>
                         <Input placeholder="Current Password" type='password' name='password' />
                         <Input placeholder="New Password" type="password" name='newpassword' />
@@ -83,8 +83,8 @@ const Navbar = (props: { username: string }) => {
             }
             {
                 duser ?
-                    <div onClick={() => setduser(false)} className='flex justify-center items-center bg-accent/85 h-screen w-full fixed left-0 right-0 top-0 bottom-0 z-1'>
-                        <form onClick={(e) => e.stopPropagation()} method="GET" onSubmit={deleteAccount} className="flex flex-col bg-background p-4 rounded-md gap-2 items-center">
+                    <div onClick={() => setduser(false)} className='z-1 flex justify-center items-center h-screen w-full fixed left-0 right-0 top-0 bottom-0 backdrop-blur-lg '>
+                        <form onClick={(e) => e.stopPropagation()} method="GET" onSubmit={deleteAccount} className="flex flex-col bg-accent p-4 rounded-md gap-2 items-center">
                             <h1 className='text-xl'>Delete User</h1>
                             <div className='text-red-600 text-center font-bold'>
                                 <p>These Will delete your account from our database</p>
@@ -105,7 +105,7 @@ const Navbar = (props: { username: string }) => {
                         </span>
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent className='flex flex-col border rounded-md backdrop-blur-md bg-accent/80'>
+                <PopoverContent className='flex flex-col border rounded-md backdrop-blur-md bg-accent/90'>
                     <Button onClick={Logout} variant={'outline'} className='w-full rounded-b-none'>Logout</Button>
                     <Button onClick={() => setchangepassword(true)} variant={'outline'} className='w-full rounded-none'>Update Password</Button>
                     <Button onClick={() => setduser(true)} variant={'destructive'} className='w-full rounded-t-none'>Delete User</Button>

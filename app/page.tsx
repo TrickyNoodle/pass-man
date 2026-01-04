@@ -29,14 +29,14 @@ const Page = () => {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col h-screen md:overflow-clip">
       <Navbar username={name} />
-      <div className="flex-1 md:flex w-full gap-4 overflow-hidden">
+      <div className="md:flex w-full gap-4 h-full">
         <div
           className={`${data.length === 0
             ? 'md:w-1/2 mx-auto flex justify-center'
             : 'md:w-1/3 gap-4'
-            } flex flex-col`}
+            } flex flex-col my-2`}
         >
           <PasswordTool getdata={getdata} />
           {data.length === 0 ? (
@@ -49,11 +49,11 @@ const Page = () => {
           }
         </div>
         {data.length > 0 && (
-          <div className="md:w-2/3 flex overflow-y-auto p-2">
-            <div className="grid gap-4 md:grid-cols-2 h-min">
+          <div className="md:w-2/3 flex md:h-15/16 overflow-y-auto overflow-x-visible">
+            <div className="grid gap-2 md:grid-cols-2 mx-auto h-min">
               {
                 data.map((password) => {
-                  if (filter.trim() == '') {  
+                  if (filter.trim() == '') {
                     return (
                       <PasswordCard
                         key={password.id}
